@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iflytek.datawoodVoice.dao.mapper.ProcessedVoiceMapper" >
+  <resultMap id="BaseResultMap" type="com.iflytek.datawoodVoice.dao.domain.ProcessedVoice" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="voice_name" property="voiceName" jdbcType="VARCHAR" />
+    <result column="voice_path" property="voicePath" jdbcType="VARCHAR" />
+    <result column="voice_pure_path" property="voicePurePath" jdbcType="VARCHAR" />
+    <result column="voice_train_path" property="voiceTrainPath" jdbcType="VARCHAR" />
+    <result column="voice_length" property="voiceLength" jdbcType="DOUBLE" />
+    <result column="voice_size" property="voiceSize" jdbcType="DOUBLE" />
+    <result column="voice_bit" property="voiceBit" jdbcType="INTEGER" />
+    <result column="voice_rate" property="voiceRate" jdbcType="INTEGER" />
+    <result column="voice_lang" property="voiceLang" jdbcType="VARCHAR" />
+    <result column="voice_channel" property="voiceChannel" jdbcType="TINYINT" />
+    <result column="voice_process_status" property="voiceProcessStatus" jdbcType="TINYINT" />
+    <result column="voice_ist_status" property="voiceIstStatus" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, voice_name, voice_path, voice_pure_path, voice_train_path, voice_length, voice_size, 
+    voice_bit, voice_rate, voice_lang, voice_channel, voice_process_status, voice_ist_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from processed_voice
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from processed_voice
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.iflytek.datawoodVoice.dao.domain.ProcessedVoice" >
+    insert into processed_voice (id, voice_name, voice_path, 
+      voice_pure_path, voice_train_path, voice_length, 
+      voice_size, voice_bit, voice_rate, 
+      voice_lang, voice_channel, voice_process_status, 
+      voice_ist_status)
+    values (#{id,jdbcType=INTEGER}, #{voiceName,jdbcType=VARCHAR}, #{voicePath,jdbcType=VARCHAR}, 
+      #{voicePurePath,jdbcType=VARCHAR}, #{voiceTrainPath,jdbcType=VARCHAR}, #{voiceLength,jdbcType=DOUBLE}, 
+      #{voiceSize,jdbcType=DOUBLE}, #{voiceBit,jdbcType=INTEGER}, #{voiceRate,jdbcType=INTEGER}, 
+      #{voiceLang,jdbcType=VARCHAR}, #{voiceChannel,jdbcType=TINYINT}, #{voiceProcessStatus,jdbcType=TINYINT}, 
+      #{voiceIstStatus,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.iflytek.datawoodVoice.dao.domain.ProcessedVoice" >
+    insert into processed_voice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="voiceName != null" >
+        voice_name,
+      </if>
+      <if test="voicePath != null" >
+        voice_path,
+      </if>
+      <if test="voicePurePath != null" >
+        voice_pure_path,
+      </if>
+      <if test="voiceTrainPath != null" >
+        voice_train_path,
+      </if>
+      <if test="voiceLength != null" >
+        voice_length,
+      </if>
+      <if test="voiceSize != null" >
+        voice_size,
+      </if>
+      <if test="voiceBit != null" >
+        voice_bit,
+      </if>
+      <if test="voiceRate != null" >
+        voice_rate,
+      </if>
+      <if test="voiceLang != null" >
+        voice_lang,
+      </if>
+      <if test="voiceChannel != null" >
+        voice_channel,
+      </if>
+      <if test="voiceProcessStatus != null" >
+        voice_process_status,
+      </if>
+      <if test="voiceIstStatus != null" >
+        voice_ist_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="voiceName != null" >
+        #{voiceName,jdbcType=VARCHAR},
+      </if>
+      <if test="voicePath != null" >
+        #{voicePath,jdbcType=VARCHAR},
+      </if>
+      <if test="voicePurePath != null" >
+        #{voicePurePath,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceTrainPath != null" >
+        #{voiceTrainPath,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceLength != null" >
+        #{voiceLength,jdbcType=DOUBLE},
+      </if>
+      <if test="voiceSize != null" >
+        #{voiceSize,jdbcType=DOUBLE},
+      </if>
+      <if test="voiceBit != null" >
+        #{voiceBit,jdbcType=INTEGER},
+      </if>
+      <if test="voiceRate != null" >
+        #{voiceRate,jdbcType=INTEGER},
+      </if>
+      <if test="voiceLang != null" >
+        #{voiceLang,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceChannel != null" >
+        #{voiceChannel,jdbcType=TINYINT},
+      </if>
+      <if test="voiceProcessStatus != null" >
+        #{voiceProcessStatus,jdbcType=TINYINT},
+      </if>
+      <if test="voiceIstStatus != null" >
+        #{voiceIstStatus,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.iflytek.datawoodVoice.dao.domain.ProcessedVoice" >
+    update processed_voice
+    <set >
+      <if test="voiceName != null" >
+        voice_name = #{voiceName,jdbcType=VARCHAR},
+      </if>
+      <if test="voicePath != null" >
+        voice_path = #{voicePath,jdbcType=VARCHAR},
+      </if>
+      <if test="voicePurePath != null" >
+        voice_pure_path = #{voicePurePath,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceTrainPath != null" >
+        voice_train_path = #{voiceTrainPath,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceLength != null" >
+        voice_length = #{voiceLength,jdbcType=DOUBLE},
+      </if>
+      <if test="voiceSize != null" >
+        voice_size = #{voiceSize,jdbcType=DOUBLE},
+      </if>
+      <if test="voiceBit != null" >
+        voice_bit = #{voiceBit,jdbcType=INTEGER},
+      </if>
+      <if test="voiceRate != null" >
+        voice_rate = #{voiceRate,jdbcType=INTEGER},
+      </if>
+      <if test="voiceLang != null" >
+        voice_lang = #{voiceLang,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceChannel != null" >
+        voice_channel = #{voiceChannel,jdbcType=TINYINT},
+      </if>
+      <if test="voiceProcessStatus != null" >
+        voice_process_status = #{voiceProcessStatus,jdbcType=TINYINT},
+      </if>
+      <if test="voiceIstStatus != null" >
+        voice_ist_status = #{voiceIstStatus,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.iflytek.datawoodVoice.dao.domain.ProcessedVoice" >
+    update processed_voice
+    set voice_name = #{voiceName,jdbcType=VARCHAR},
+      voice_path = #{voicePath,jdbcType=VARCHAR},
+      voice_pure_path = #{voicePurePath,jdbcType=VARCHAR},
+      voice_train_path = #{voiceTrainPath,jdbcType=VARCHAR},
+      voice_length = #{voiceLength,jdbcType=DOUBLE},
+      voice_size = #{voiceSize,jdbcType=DOUBLE},
+      voice_bit = #{voiceBit,jdbcType=INTEGER},
+      voice_rate = #{voiceRate,jdbcType=INTEGER},
+      voice_lang = #{voiceLang,jdbcType=VARCHAR},
+      voice_channel = #{voiceChannel,jdbcType=TINYINT},
+      voice_process_status = #{voiceProcessStatus,jdbcType=TINYINT},
+      voice_ist_status = #{voiceIstStatus,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

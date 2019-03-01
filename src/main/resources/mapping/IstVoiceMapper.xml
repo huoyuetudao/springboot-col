@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iflytek.datawoodVoice.dao.mapper.IstVoiceMapper">
+  <resultMap id="BaseResultMap" type="com.iflytek.datawoodVoice.dao.domain.IstVoice">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="processed_voice_id" jdbcType="INTEGER" property="processedVoiceId" />
+    <result column="ist_begin" jdbcType="DOUBLE" property="istBegin" />
+    <result column="ist_end" jdbcType="DOUBLE" property="istEnd" />
+    <result column="ist_score" jdbcType="DOUBLE" property="istScore" />
+    <result column="ist_text" jdbcType="VARCHAR" property="istText" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, processed_voice_id, ist_begin, ist_end, ist_score, ist_text
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ist_voice
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ist_voice
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.iflytek.datawoodVoice.dao.domain.IstVoice">
+    insert into ist_voice (id, processed_voice_id, ist_begin, 
+      ist_end, ist_score, ist_text
+      )
+    values (#{id,jdbcType=INTEGER}, #{processedVoiceId,jdbcType=INTEGER}, #{istBegin,jdbcType=DOUBLE}, 
+      #{istEnd,jdbcType=DOUBLE}, #{istScore,jdbcType=DOUBLE}, #{istText,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.iflytek.datawoodVoice.dao.domain.IstVoice">
+    insert into ist_voice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="processedVoiceId != null">
+        processed_voice_id,
+      </if>
+      <if test="istBegin != null">
+        ist_begin,
+      </if>
+      <if test="istEnd != null">
+        ist_end,
+      </if>
+      <if test="istScore != null">
+        ist_score,
+      </if>
+      <if test="istText != null">
+        ist_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="processedVoiceId != null">
+        #{processedVoiceId,jdbcType=INTEGER},
+      </if>
+      <if test="istBegin != null">
+        #{istBegin,jdbcType=DOUBLE},
+      </if>
+      <if test="istEnd != null">
+        #{istEnd,jdbcType=DOUBLE},
+      </if>
+      <if test="istScore != null">
+        #{istScore,jdbcType=DOUBLE},
+      </if>
+      <if test="istText != null">
+        #{istText,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.iflytek.datawoodVoice.dao.domain.IstVoice">
+    update ist_voice
+    <set>
+      <if test="processedVoiceId != null">
+        processed_voice_id = #{processedVoiceId,jdbcType=INTEGER},
+      </if>
+      <if test="istBegin != null">
+        ist_begin = #{istBegin,jdbcType=DOUBLE},
+      </if>
+      <if test="istEnd != null">
+        ist_end = #{istEnd,jdbcType=DOUBLE},
+      </if>
+      <if test="istScore != null">
+        ist_score = #{istScore,jdbcType=DOUBLE},
+      </if>
+      <if test="istText != null">
+        ist_text = #{istText,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.iflytek.datawoodVoice.dao.domain.IstVoice">
+    update ist_voice
+    set processed_voice_id = #{processedVoiceId,jdbcType=INTEGER},
+      ist_begin = #{istBegin,jdbcType=DOUBLE},
+      ist_end = #{istEnd,jdbcType=DOUBLE},
+      ist_score = #{istScore,jdbcType=DOUBLE},
+      ist_text = #{istText,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
